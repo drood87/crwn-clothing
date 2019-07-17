@@ -9,7 +9,33 @@ const config = {
   projectId: 'crwn-db-5f9a3',
   storageBucket: '',
   messagingSenderId: '826482702455',
-  appId: '1:826482702455:web:dc6c1670fba3fe52',
+  appId: '1:826482702455:web:dc6c1670fba3fe52'
+};
+
+export const createUserProfileDocument = async (userAuth, additionalData) => {
+  if (!userAuth) return;
+
+  const userRef = firestore.doc(`users/${userAuth.uid}`);
+
+  const snapShot = await userRef.get();
+
+  if (!snapShot.exists) {
+    const { displayName, email } = userAuth;
+    const createdAt = new Date();
+
+    try {
+      userRef.set({
+        displayName,
+        email,
+        createdAt,
+        ...additionalData
+      });
+    } catch (error) {
+      console.log('error creating user', error.message);
+    }
+  }
+
+  return userRef;
 };
 
 firebase.initializeApp(config);
