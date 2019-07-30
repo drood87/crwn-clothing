@@ -3,12 +3,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { ReactComponent as Logo } from '../../assets/crown.svg';
 import './header.styles.scss';
 import CardIcon from '../card-icon/card-icon.component';
 import CardDropdown from '../card-dropdown/card-dropdown.component';
 import { auth } from '../../firebase/firebase.utils';
-import { connect } from 'react-redux';
 
 const Header = ({ currentUser, hidden }) => (
   <div className="header">

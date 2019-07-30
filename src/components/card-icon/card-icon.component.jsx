@@ -15,7 +15,7 @@ const CardIcon = ({ toggleCardHidden }) => (
 );
 
 const mapDispatchToProps = dispatch => ({
-  toggleCardHidden: () => dispatch(toggleCardHidden())
+  toggleCardHidden: () => dispatch(toggleCardHidden()),
 });
 
 export default connect(

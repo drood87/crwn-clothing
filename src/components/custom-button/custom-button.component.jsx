@@ -1,12 +1,20 @@
+/* eslint-disable react/button-has-type */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 
 import './custom-button.styles.scss';
 
-const CustomButton = ({ children, isGoogleSignIn, ...otherProps }) => (
+const CustomButton = ({
+  children,
+  isGoogleSignIn,
+  inverted,
+  ...otherProps
+}) => (
   <button
-    type="submit"
-    className={`${isGoogleSignIn ? 'google-sign-in' : ''} custom-button`}
+    className={`${inverted ? 'inverted' : ''}
+    ${isGoogleSignIn ? 'google-sign-in' : ''}
+    custom-button`}
     {...otherProps}
   >
     {children}
@@ -15,7 +23,7 @@ const CustomButton = ({ children, isGoogleSignIn, ...otherProps }) => (
 
 CustomButton.propTypes = {
   children: PropTypes.node,
-  isGoogleSignIn: PropTypes.bool
+  isGoogleSignIn: PropTypes.bool,
 }.isRequired;
 
 export default CustomButton;

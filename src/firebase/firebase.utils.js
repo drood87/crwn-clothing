@@ -9,7 +9,7 @@ const config = {
   projectId: 'crwn-db-5f9a3',
   storageBucket: '',
   messagingSenderId: '826482702455',
-  appId: '1:826482702455:web:dc6c1670fba3fe52'
+  appId: '1:826482702455:web:dc6c1670fba3fe52',
 };
 
 export const createUserProfileDocument = async (userAuth, additionalData) => {
@@ -28,7 +28,7 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
         displayName,
         email,
         createdAt,
-        ...additionalData
+        ...additionalData,
       });
     } catch (error) {
       console.log('error creating user', error.message);
