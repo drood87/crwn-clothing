@@ -1,16 +1,26 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import CustomButton from '../custom-button/custom-button.component';
+import CardItem from '../card-item/card-item.component';
 
 import './card-dropdown.styles.scss';
 
-const CardDropdown = () => (
+const CardDropdown = ({ cardItems }) => (
   <div className="card-dropdown">
-    <div className="card-items" />
+    <div className="card-items">
+      {cardItems.map(cardItem => (
+        <CardItem key={cardItem.id} item={cardItem} />
+      ))}
+    </div>
     <CustomButton inverted isGoogleSignIn={false}>
       GO TO CHECKOUT
     </CustomButton>
   </div>
 );
 
-export default CardDropdown;
+const mapStateToProps = ({ card: { cardItems } }) => ({
+  cardItems,
+});
+
+export default connect(mapStateToProps)(CardDropdown);
