@@ -4,10 +4,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 import { ReactComponent as Logo } from '../../assets/crown.svg';
 import './header.styles.scss';
 import CardIcon from '../card-icon/card-icon.component';
 import CardDropdown from '../card-dropdown/card-dropdown.component';
+import { selectCardHidden } from '../../redux/card/card.selectors';
+import { selectCurrentUser } from '../../redux/user/user.selector';
 import { auth } from '../../firebase/firebase.utils';
 
 const Header = ({ currentUser, hidden }) => (
@@ -38,13 +41,13 @@ const Header = ({ currentUser, hidden }) => (
 );
 
 Header.propTypes = {
-  currentUser: PropTypes.object
+  currentUser: PropTypes.object,
 }.isRequired;
 
-//name can be anything but mapStateToProps is standard with redux codebase
-const mapStateToProps = ({ user: { currentUser }, card: { hidden } }) => ({
-  currentUser,
-  hidden
+// name can be anything but mapStateToProps is standard with redux codebase
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser,
+  hidden: selectCardHidden,
 });
 
 export default connect(mapStateToProps)(Header);
